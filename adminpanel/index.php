@@ -10,6 +10,6 @@
     <title>Home</title>
 </head>
 <body>
-    <h2>Selamat Datang Admin</h2>
+    <h2>Selamat Datang <?php echo $_SESSION['username']?></h2>
 </body>
 </html>
