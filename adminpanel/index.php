@@ -58,7 +58,7 @@ $jumlahProduk = mysqli_num_rows($queryProduk);
                     <div class="box summary-kategori p-3">
                         <div class="row">
                             <div class="col-6">
-                                <i class="bi bi-card-list large-icon"></i>
+                            <i class="bi bi-list-task large-icon"></i>
                             </div>
                             <div class="col-6 text-white">
                                 <h3 class="fs-2">Kategori</h3>
