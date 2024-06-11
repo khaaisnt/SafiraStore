@@ -1,5 +1,12 @@
 <?php
 require "session.php";
+require "../koneksi.php";
+
+$queryKategori = mysqli_query($conn, "SELECT * FROM kategori");
+$jumlahKategori = mysqli_num_rows($queryKategori);
+
+$queryProduk = mysqli_query($conn, "SELECT * FROM produk");
+$jumlahProduk = mysqli_num_rows($queryProduk);
 ?>
 
 <!DOCTYPE html>
@@ -8,22 +15,26 @@ require "session.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Dashboard Admin</title>
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <style>
-    .box{
-        border: solid;
+    .box {
+        border-radius: 10px;
     }
 
-    .summary-kategori{
+    .summary-kategori {
         background-color: #41ba52;
     }
 
+    .summary-produk {
+        background-color: #4287f5;
+    }
+
     .large-icon {
-        font-size: 4rem; /* Atur ukuran sesuai kebutuhan */
+        font-size: 5rem;
     }
 </style>
 
@@ -35,21 +46,39 @@ require "session.php";
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">
-                    <i class="bi bi-house-door-fill"></i>Home
+                    <i class="bi bi-house-door-fill me-1"></i>Home
                 </li>
             </ol>
         </nav>
-        <h2>Selamat Datang <?php echo $_SESSION['username'] ?></h2>
+        <h2 class="fs-1">Selamat Datang <?php echo $_SESSION['username'] ?></h2>
 
         <div class="container mt-5">
             <div class="row">
-                <div class="col-lg-4 box summary-kategori">
-                    <div class="row" >
-                        <div class="col-6">
-                            <i class="bi bi-card-list large-icon"></i>
+                <div class="col-lg-4 col-md-6 col-12 mb-3">
+                    <div class="box summary-kategori p-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <i class="bi bi-card-list large-icon"></i>
+                            </div>
+                            <div class="col-6 text-white">
+                                <h3 class="fs-2">Kategori</h3>
+                                <p class="fs-4"><?php echo$jumlahKategori; ?> Kategori</p>
+                                <p><a href="kategori.php" class="text-white">Lihat detail</a></p>
+                            </div>
                         </div>
-                        <div class="">
-
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12 mb-3">
+                    <div class="box summary-produk p-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <i class="bi bi-inboxes-fill large-icon"></i>
+                            </div>
+                            <div class="col-6 text-white">
+                                <h3 class="fs-2">Produk</h3>
+                                <p class="fs-4"><?php echo$jumlahProduk; ?> Produk</p>
+                                <p><a href="produk.php" class="text-white">Lihat detail</a></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -59,5 +88,4 @@ require "session.php";
 
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
