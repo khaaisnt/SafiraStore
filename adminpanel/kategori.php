@@ -105,7 +105,7 @@ $jumlahKategori = mysqli_num_rows($queryKategori);
                         if ($jumlahKategori == 0) {
                         ?>
                             <tr>
-                                <td colspan=3>Data kategori tidak ada</td>
+                                <td colspan=3 class="text-center">Data kategori tidak ada</td>
                             </tr>
                             <?php
                         } else {
