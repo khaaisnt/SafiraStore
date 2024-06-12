@@ -30,7 +30,7 @@ $data = mysqli_fetch_array($query);
             <form action="" method="post">
                 <div>
                     <label for="kategori">Kategori</label>
-                    <input type="text" name="kategori" id="kategori" value="<?php echo $data['nama']; ?>" class="form-control my-1">
+                    <input type="text" name="kategori" id="kategori" value="<?php echo $data['nama']; ?>" class="form-control my-1" autocomplete="off">
                 </div>
 
                 <div class="mt-2">

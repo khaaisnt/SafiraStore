@@ -47,7 +47,7 @@ $jumlahKategori = mysqli_num_rows($queryKategori);
             <form action="" method="post">
                 <div>
                     <label for="kategori">Kategori </label>
-                    <input type="text" id="kategori" name="kategori" placeholder="masukkan nama kategori" class="form-control my-2">
+                    <input type="text" id="kategori" name="kategori" placeholder="masukkan nama kategori" class="form-control my-2" autocomplete="off">
                 </div>
 
                 <div>

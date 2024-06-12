@@ -89,6 +89,10 @@ $queryKategori = mysqli_query($conn, "SELECT * FROM kategori");
                         <option value="Habis">Habis</option>
                     </select>
                 </div>
+
+                <div class="my-3">
+                    <button type="submit" class="btn btn-success" name="simpan">Submit</button>
+                </div>
             </form>
         </div>
 

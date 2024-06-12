@@ -33,7 +33,7 @@ require "../koneksi.php";
             <form action="" method="post">
                 <div>
                     <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="masukkan username">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="masukkan username" autocomplete="off">
                 </div>
                 <div class="mt-2">
                     <label for="password">Password</label>
