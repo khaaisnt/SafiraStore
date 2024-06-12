@@ -71,6 +71,7 @@ $jumlahKategori = mysqli_num_rows($queryKategori);
                     <?php
                 } else {
                     $querySimpan = mysqli_query($conn, "INSERT INTO kategori (nama) VALUES ('$kategori')");
+
                     if ($querySimpan) {
                     ?>
                         <div class="alert alert-success mt-3" role="alert">
@@ -114,7 +115,9 @@ $jumlahKategori = mysqli_num_rows($queryKategori);
                                 <tr>
                                     <td><?php echo $jumlah ?></td>
                                     <td><?php echo $data['nama'] ?></td>
-                                    <td></td>
+                                    <td>
+                                        <a href="kategori-detail.php?id=<?php echo $data['id'] ?>" class="btn btn-primary">Detail</a>
+                                    </td>
                                 </tr>
                         <?php
                                 $jumlah++;
