@@ -56,20 +56,35 @@ $jumlahKategori = mysqli_num_rows($queryKategori);
             </form>
 
 
-            <?php 
-            if(isset($_POST['simpanKaategori'])){
+            <?php
+            if (isset($_POST['simpanKategori'])) {
                 $kategori = htmlspecialchars($_POST['kategori']);
 
-                $queryExist = mysqli_query($conn,"SELECT nama FROM kategori WHERE kategori='$kategori'");
-
+                $queryExist = mysqli_query($conn, "SELECT nama FROM kategori WHERE nama='$kategori'");
                 $jumlahDataKategoriBaru = mysqli_num_rows($queryExist);
-                
-                echo $jumlahDataKategoriBaru;
+
+                if ($jumlahDataKategoriBaru > 0) {
+            ?>
+                    <div class="alert alert-warning mt-3" role="alert">
+                        Kategori Sudah Ada!
+                    </div>
+                    <?php
+                } else {
+                    $querySimpan = mysqli_query($conn, "INSERT INTO kategori (nama) VALUES ('$kategori')");
+                    if ($querySimpan) {
+                    ?>
+                        <div class="alert alert-success mt-3" role="alert">
+                            Sukses Tambah Kategori!
+                        </div>
+
+                        <meta http-equiv="refresh" content="1; url=kategori.php">
+            <?php
+                    } else {
+                        echo mysqli_error($conn);
+                    }
+                }
             }
             ?>
-            <!-- <div class="alert alert-success mt-3" role="alert">
-                Sukses tambah data!
-            </div> -->
         </div>
 
         <div class="mt-3">
