@@ -6,6 +6,17 @@ $queryProduk = mysqli_query($conn, "SELECT * FROM produk");
 $jumlahProduk = mysqli_num_rows($queryProduk);
 
 $queryKategori = mysqli_query($conn, "SELECT * FROM kategori");
+
+function generateRandomString($length = 10)
+{
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
 ?>
 
 <!DOCTYPE html>
@@ -50,12 +61,12 @@ $queryKategori = mysqli_query($conn, "SELECT * FROM kategori");
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="my-2">
                     <label for="nama">Nama</label>
-                    <input type="text" id="nama" class="form-control my-1" name="nama" autocomplete="off">
+                    <input type="text" id="nama" class="form-control my-1" name="nama" autocomplete="off" required>
                 </div>
 
                 <div class="my-2">
                     <label for="kategori">Kategori</label>
-                    <select name="kategori" id="kategori" class="form-control my-1">
+                    <select name="kategori" id="kategori" class="form-control my-1" required>
                         <option value="">Pilih Kategori</option>
                         <?php
                         while ($data = mysqli_fetch_array($queryKategori)) {
@@ -69,7 +80,7 @@ $queryKategori = mysqli_query($conn, "SELECT * FROM kategori");
 
                 <div class="my-2">
                     <label for="harga">Harga</label>
-                    <input type="number" class="form-control my-1" name="harga">
+                    <input type="number" class="form-control my-1" name="harga" required>
                 </div>
 
                 <div class="my-2">
@@ -94,6 +105,51 @@ $queryKategori = mysqli_query($conn, "SELECT * FROM kategori");
                     <button type="submit" class="btn btn-success" name="simpan">Submit</button>
                 </div>
             </form>
+
+            <?php
+            if (isset($_POST['simpan'])) {
+                $nama = htmlspecialchars($_POST['nama']);
+                $kategori = htmlspecialchars($_POST['kategori']);
+                $harga = htmlspecialchars($_POST['harga']);
+                $detail = htmlspecialchars($_POST['detail']);
+                $stok = htmlspecialchars($_POST['stok']);
+
+                $target_dir = "../image/";
+                $nama_file = basename($_FILES["foto"]["name"]);
+                $target_file = $target_dir . $nama_file;
+                $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+                $image_size = $_FILES["foto"]["size"];
+                $random_name = generateRandomString(20);
+
+                if ($nama == '' || $kategori == '' || $harga == '') {
+            ?>
+                    <div class="alert alert-warning mt-3" role="alert">
+                        Nama, kategori, dan harga harus diisi!
+                    </div>
+                    <?php
+                } else {
+                    if ($nama_file != '') {
+                        if ($image_size > 5000000) {
+                    ?>
+                            <div class="alert alert-warning mt-3" role="alert">
+                                File foto terlalu besar!
+                            </div>
+                            <?php
+                        } else {
+                            if ($imageFileType != 'jpg' && $imageFileType != 'png' && $imageFileType != 'gif' && $imageFileType != 'jpeg') {
+                            ?>
+                                <div class="alert alert-warning mt-3" role="alert">
+                                    Jenis file tidak dapat diupload!
+                                </div>
+            <?php
+                            } else {
+                                move_uploaded_file($_FILES["foto"]["tmp_name"], $target_dir . $random_name . "." . $imageFileType);
+                            }
+                        }
+                    }
+                }
+            }
+            ?>
         </div>
 
         <div class="mt-3">
