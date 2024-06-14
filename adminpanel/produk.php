@@ -120,6 +120,7 @@ function generateRandomString($length = 10)
                 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
                 $image_size = $_FILES["foto"]["size"];
                 $random_name = generateRandomString(20);
+                $new_name = $random_name . "." . $imageFileType;
 
                 if ($nama == '' || $kategori == '' || $harga == '') {
             ?>
@@ -141,11 +142,25 @@ function generateRandomString($length = 10)
                                 <div class="alert alert-warning mt-3" role="alert">
                                     Jenis file tidak dapat diupload!
                                 </div>
-            <?php
+                        <?php
                             } else {
-                                move_uploaded_file($_FILES["foto"]["tmp_name"], $target_dir . $random_name . "." . $imageFileType);
+                                move_uploaded_file($_FILES["foto"]["tmp_name"], $target_dir . $new_name);
                             }
                         }
+                    }
+                    // masukkan data kedalam database
+                    $querySimpan = mysqli_query($conn, "INSERT INTO produk (kategori_id, nama, harga, foto, detail, ketersediaan_stok) VALUES ('$kategori', '$nama', '$harga', '$new_name', '$detail', '$stok')");
+
+                    if ($querySimpan) {
+                        ?>
+                        <div class="alert alert-success mt-3" role="alert">
+                            Produk berhasil tersimpan!
+                        </div>
+
+                        <meta http-equiv="refresh" content="1; url=produk.php">
+            <?php
+                    } else {
+                        echo mysqli_error($conn);
                     }
                 }
             }
