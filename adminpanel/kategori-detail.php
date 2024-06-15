@@ -33,7 +33,7 @@ $data = mysqli_fetch_array($query);
                 </div>
 
                 <div class="mt-2">
-                    <button type="submit" class="btn btn-primary me-1" name="editBtn">Edit</button>
+                    <button type="submit" class="btn btn-primary me-1" name="editBtn">Simpan</button>
                     <button type="submit" class="btn btn-danger" name="hapusBtn">Hapus</button>
                 </div>
             </form>

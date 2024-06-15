@@ -96,7 +96,7 @@ function generateRandomString($length = 10)
                     </select>
                 </div>
 
-                <div class="my-3">
+                <div class="mt-3 mb-5">
                     <button type="submit" class="btn btn-primary me-1" name="simpan">Simpan</button>
                     <button type="submit" class="btn btn-danger" name="hapus">Hapus</button>
                 </div>
