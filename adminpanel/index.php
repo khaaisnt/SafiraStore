@@ -15,7 +15,7 @@ $jumlahProduk = mysqli_num_rows($queryProduk);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -58,11 +58,11 @@ $jumlahProduk = mysqli_num_rows($queryProduk);
                     <div class="box summary-kategori p-3">
                         <div class="row">
                             <div class="col-6">
-                            <i class="bi bi-list-task large-icon"></i>
+                                <i class="bi bi-list-task large-icon"></i>
                             </div>
                             <div class="col-6 text-white">
                                 <h3 class="fs-2">Kategori</h3>
-                                <p class="fs-4"><?php echo$jumlahKategori; ?> Kategori</p>
+                                <p class="fs-4"><?php echo $jumlahKategori; ?> Kategori</p>
                                 <p><a href="kategori.php" class="text-white">Lihat detail</a></p>
                             </div>
                         </div>
@@ -76,7 +76,7 @@ $jumlahProduk = mysqli_num_rows($queryProduk);
                             </div>
                             <div class="col-6 text-white">
                                 <h3 class="fs-2">Produk</h3>
-                                <p class="fs-4"><?php echo$jumlahProduk; ?> Produk</p>
+                                <p class="fs-4"><?php echo $jumlahProduk; ?> Produk</p>
                                 <p><a href="produk.php" class="text-white">Lihat detail</a></p>
                             </div>
                         </div>
@@ -88,4 +88,5 @@ $jumlahProduk = mysqli_num_rows($queryProduk);
 
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
