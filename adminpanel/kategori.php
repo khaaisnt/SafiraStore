@@ -88,7 +88,7 @@ $jumlahKategori = mysqli_num_rows($queryKategori);
             ?>
         </div>
 
-        <div class="mt-3">
+        <div class="mt-3 mb-5">
             <h2 class="fs-1">List Kategori</h2>
 
             <div class="table-responsive mt-5">

@@ -2,10 +2,11 @@
 require "session.php";
 require "../koneksi.php";
 
-$queryProduk = mysqli_query($conn, "SELECT a.*, b.nama AS nama_kategori FROM produk a JOIN kategori b ON a.kategori_id = b.id");
-$jumlahProduk = mysqli_num_rows($queryProduk);
+$id = $_GET['id'];
+$query = mysqli_query($conn, "SELECT a.*, b.nama AS nama_kategori FROM produk a JOIN kategori b ON a.kategori_id=b.id WHERE a.id='$id'");
+$data = mysqli_fetch_array($query);
 
-$queryKategori = mysqli_query($conn, "SELECT * FROM kategori");
+$queryKategori = mysqli_query($conn, "SELECT * FROM kategori WHERE id!='$data[kategori_id]'");
 
 function generateRandomString($length = 10)
 {
@@ -25,53 +26,33 @@ function generateRandomString($length = 10)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produk</title>
+    <title>Detail Produk</title>
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
-
-<style>
-    .no-decoration {
-        text-decoration: none;
-    }
-</style>
 
 <body>
     <?php
     require "navbar.php";
     ?>
-
     <div class="container mt-5">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page">
-                    <a href="../adminpanel" class="no-decoration text-muted">
-                        <i class="bi bi-house-door-fill me-1"></i>Home
-                    </a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">
-                    <i class="bi bi-inboxes-fill me-1"></i>Produk
-                </li>
-            </ol>
-        </nav>
+        <h2>Detail Produk</h2>
 
-        <div class="my-5 col-12 col-md-6">
-            <h3>Tambah Produk</h3>
-
+        <div class="col-12 col-md-6">
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="my-2">
                     <label for="nama">Nama</label>
-                    <input type="text" id="nama" class="form-control my-1" name="nama" autocomplete="off" required>
+                    <input type="text" id="nama" value="<?php echo $data['nama']; ?>" class="form-control my-1" name="nama" autocomplete="off" required>
                 </div>
 
                 <div class="my-2">
                     <label for="kategori">Kategori</label>
                     <select name="kategori" id="kategori" class="form-control my-1" required>
-                        <option value="">Pilih Kategori</option>
+                        <option value="<?php echo $data['kategori_id'] ?>"><?php echo $data['nama_kategori']; ?></option>
                         <?php
-                        while ($data = mysqli_fetch_array($queryKategori)) {
+                        while ($dataKategori = mysqli_fetch_array($queryKategori)) {
                         ?>
-                            <option value="<?php echo $data['id'] ?>"><?php echo $data['nama'] ?></option>
+                            <option value="<?php echo $dataKategori['id'] ?>"><?php echo $dataKategori['nama'] ?></option>
                         <?php
                         }
                         ?>
@@ -80,9 +61,13 @@ function generateRandomString($length = 10)
 
                 <div class="my-2">
                     <label for="harga">Harga</label>
-                    <input type="number" class="form-control my-1" name="harga" required>
+                    <input type="number" class="form-control my-1" name="harga" value="<?php echo $data['harga'] ?>" required>
                 </div>
 
+                <div>
+                    <label for="fotoTerkini">Foto Produk Terkini</label>
+                    <img src="../image/<?php echo $data['foto'] ?>" width="350px" alt="foto produk terkini">
+                </div>
                 <div class="my-2">
                     <label for="foto">Foto</label>
                     <input type="file" name="foto" id="foto" class="form-control">
@@ -90,19 +75,30 @@ function generateRandomString($length = 10)
 
                 <div class="my-2">
                     <label for="detail">Detail</label>
-                    <textarea name="detail" id="detail" cols="30" rows="5" class="form-control"></textarea>
+                    <textarea name="detail" id="detail" cols="30" rows="5" class="form-control"><?php echo $data['detail'] ?></textarea>
                 </div>
 
                 <div class="my-2">
                     <label for="stok">Ketersediaan Stok</label>
                     <select name="stok" id="stok" class="form-control">
-                        <option value="tersedia">Tersedia</option>
-                        <option value="Habis">Habis</option>
+                        <option value="<?php echo $data['ketersediaan_stok'] ?>"><?php echo $data['ketersediaan_stok'] ?></option>
+                        <?php
+                        if ($data['ketersediaan_stok'] == 'tersedia') {
+                        ?>
+                            <option value="Habis">habis</option>
+                        <?php
+                        } else {
+                        ?>
+                            <option value="tersedia">tersedia</option>
+                        <?php
+                        }
+                        ?>
                     </select>
                 </div>
 
                 <div class="my-3">
-                    <button type="submit" class="btn btn-success" name="simpan">Simpan</button>
+                    <button type="submit" class="btn btn-primary me-1" name="simpan">Simpan</button>
+                    <button type="submit" class="btn btn-danger" name="hapus">Hapus</button>
                 </div>
             </form>
 
@@ -129,6 +125,8 @@ function generateRandomString($length = 10)
                     </div>
                     <?php
                 } else {
+                    $queryUpdate = mysqli_query($conn, "UPDATE produk SET kategori_id = '$kategori', nama='$nama', harga='$harga', detail='$detail', ketersediaan_stok='$stok' WHERE id=$id");
+
                     if ($nama_file != '') {
                         if ($image_size > 5000000) {
                     ?>
@@ -142,76 +140,46 @@ function generateRandomString($length = 10)
                                 <div class="alert alert-warning mt-3" role="alert">
                                     Jenis file tidak dapat diupload!
                                 </div>
-                        <?php
+                                <?php
                             } else {
                                 move_uploaded_file($_FILES["foto"]["tmp_name"], $target_dir . $new_name);
+
+                                $queryUpdate = mysqli_query($conn, "UPDATE produk SET foto='$new_name' WHERE id=$id");
+
+                                if ($queryUpdate) {
+                                ?>
+                                    <div class="alert alert-success mt-3" role="alert">
+                                        Produk berhasil tersimpan!
+                                    </div>
+
+                                    <meta http-equiv="refresh" content="2; url=produk.php" />
+                    <?php
+                                } else {
+                                    echo mysqli_error($conn);
+                                }
                             }
                         }
                     }
-                    // masukkan data kedalam database
-                    $querySimpan = mysqli_query($conn, "INSERT INTO produk (kategori_id, nama, harga, foto, detail, ketersediaan_stok) VALUES ('$kategori', '$nama', '$harga', '$new_name', '$detail', '$stok')");
+                }
+            }
+            if (isset($_POST['hapus'])) {
+                $queryHapus = mysqli_query($conn, "DELETE FROM produk WHERE id='$id'");
 
-                    if ($querySimpan) {
-                        ?>
-                        <div class="alert alert-success mt-3" role="alert">
-                            Produk berhasil tersimpan!
-                        </div>
+                if ($queryHapus) {
+                    ?>
+                    <div class="alert alert-success mt-3" role="alert">
+                        Produk Berhasil Dihapus!
+                    </div>
 
-                        <meta http-equiv="refresh" content="1; url=produk.php">
+                    <meta http-equiv="refresh" content="2; url=produk.php" />
             <?php
-                    } else {
-                        echo mysqli_error($conn);
-                    }
+                } else {
+                    echo mysqli_error($conn);
                 }
             }
             ?>
         </div>
-
-        <div class="mt-3 mb-5">
-            <h2>List Produk</h2>
-            <div class="table-responsive mt-5">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Nama</th>
-                            <th>Kategori</th>
-                            <th>Harga</th>
-                            <th>Ketersediaan Stok</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        if ($jumlahProduk == 0) {
-                        ?>
-                            <tr>
-                                <td colspan=6 class="text-center">Data produk tidak ada</td>
-                            </tr>
-                            <?php
-                        } else {
-                            $jumlah = 1;
-                            while ($data = mysqli_fetch_array($queryProduk)) {
-                            ?>
-                                <tr>
-                                    <td><?php echo $jumlah ?></td>
-                                    <td><?php echo $data['nama'] ?></td>
-                                    <td><?php echo $data['nama_kategori'] ?></td>
-                                    <td><?php echo $data['harga'] ?></td>
-                                    <td><?php echo $data['ketersediaan_stok'] ?></td>
-                                    <td><a href="produk-detail.php?id=<?php echo $data['id'] ?>" class="btn btn-primary">Detail</a></td>
-                                </tr>
-                        <?php
-                                $jumlah++;
-                            }
-                        }
-                        ?>
-                    </tbody>
-            </div>
-        </div>
     </div>
-
-
 
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>

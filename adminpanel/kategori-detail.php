@@ -5,7 +5,6 @@ require "../koneksi.php";
 $id = $_GET['id'];
 $query = mysqli_query($conn, "SELECT * FROM kategori WHERE id='$id'");
 $data = mysqli_fetch_array($query);
-
 ?>
 
 <!DOCTYPE html>
@@ -76,10 +75,22 @@ $data = mysqli_fetch_array($query);
             }
 
             if (isset($_POST['hapusBtn'])) {
+                $queryCheck = mysqli_query($conn, "SELECT * FROM produk WHERE kategori_id='$id'");
+                $dataCount = mysqli_num_rows($queryCheck);
+
+                if ($dataCount > 0) {
+                    ?>
+                    <div class="alert alert-warning mt-3" role="alert">
+                        Kategori tidak bisa dihapus, sudah digunakan pada produk!
+                    </div>
+                <?php
+                    die();
+                }
+
                 $queryHapus = mysqli_query($conn, "DELETE FROM kategori WHERE id='$id'");
 
                 if ($queryHapus) {
-                    ?>
+                ?>
                     <div class="alert alert-success mt-3" role="alert">
                         Kategori Berhasil Dihapus!
                     </div>
