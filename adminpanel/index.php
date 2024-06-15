@@ -58,7 +58,9 @@ $jumlahProduk = mysqli_num_rows($queryProduk);
                     <div class="box summary-kategori p-3">
                         <div class="row">
                             <div class="col-6">
-                                <i class="bi bi-list-task large-icon"></i>
+                                <a href="kategori.php" class="text-black">
+                                    <i class="bi bi-list-task large-icon"></i>
+                                </a>
                             </div>
                             <div class="col-6 text-white">
                                 <h3 class="fs-2">Kategori</h3>
@@ -72,7 +74,9 @@ $jumlahProduk = mysqli_num_rows($queryProduk);
                     <div class="box summary-produk p-3">
                         <div class="row">
                             <div class="col-6">
-                                <i class="bi bi-inboxes-fill large-icon"></i>
+                                <a href="produk.php" class="text-black">
+                                    <i class="bi bi-inboxes-fill large-icon"></i>
+                                </a>
                             </div>
                             <div class="col-6 text-white">
                                 <h3 class="fs-2">Produk</h3>
