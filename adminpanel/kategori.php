@@ -12,7 +12,7 @@ $jumlahKategori = mysqli_num_rows($queryKategori);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kategori Produk</title>
+    <title>Daftar Kategori</title>
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -23,7 +23,7 @@ $jumlahKategori = mysqli_num_rows($queryKategori);
     }
 </style>
 
-<body>
+<body class="bg-light">
     <?php
     require "navbar.php";
     ?>
@@ -51,7 +51,7 @@ $jumlahKategori = mysqli_num_rows($queryKategori);
                 </div>
 
                 <div>
-                    <button class="btn btn-success" type="submit" name="simpanKategori">Simpan</button>
+                    <button class="btn btn-success mt-1" type="submit" name="simpanKategori">Simpan</button>
                 </div>
             </form>
 
@@ -92,7 +92,7 @@ $jumlahKategori = mysqli_num_rows($queryKategori);
             <h2 class="fs-1">List Kategori</h2>
 
             <div class="table-responsive mt-5">
-                <table class="table">
+                <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
                             <th>No.</th>

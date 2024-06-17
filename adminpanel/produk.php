@@ -25,7 +25,7 @@ function generateRandomString($length = 10)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produk</title>
+    <title>Daftar Produk</title>
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -36,7 +36,7 @@ function generateRandomString($length = 10)
     }
 </style>
 
-<body>
+<body class="bg-light">
     <?php
     require "navbar.php";
     ?>
@@ -170,7 +170,7 @@ function generateRandomString($length = 10)
         <div class="mt-3 mb-5">
             <h2>List Produk</h2>
             <div class="table-responsive mt-5">
-                <table class="table">
+                <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
                             <th>No.</th>
@@ -197,7 +197,7 @@ function generateRandomString($length = 10)
                                     <td><?php echo $jumlah ?></td>
                                     <td><?php echo $data['nama'] ?></td>
                                     <td><?php echo $data['nama_kategori'] ?></td>
-                                    <td><?php echo $data['harga'] ?></td>
+                                    <td>Rp. <?php echo $data['harga'] ?></td>
                                     <td><?php echo $data['ketersediaan_stok'] ?></td>
                                     <td><a href="produk-detail.php?id=<?php echo $data['id'] ?>" class="btn btn-primary">Detail</a></td>
                                 </tr>

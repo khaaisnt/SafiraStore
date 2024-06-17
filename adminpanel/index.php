@@ -38,7 +38,7 @@ $jumlahProduk = mysqli_num_rows($queryProduk);
     }
 </style>
 
-<body>
+<body class="bg-light">
     <?php
     require "navbar.php";
     ?>
@@ -88,9 +88,16 @@ $jumlahProduk = mysqli_num_rows($queryProduk);
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- <div class="my-4 container text-center d-flex justify-content-center">
+            <div class="login-box px-5 pb-4 pt-4 shadow bg-white">
+                <h2>Pesan!</h2>
+                <p>Haloo mamaa! website ini dibuat khusus untuk admin yang berfungsi untuk mendata kategori dan produk yang dijual. Rakha harap dengan adanya website ini bisa memudahkan mama untuk mendata stok barang. Makasih yaa mamaaa❤️</p>
+            </div>
+        </div>
+    </div> -->
+
+        <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

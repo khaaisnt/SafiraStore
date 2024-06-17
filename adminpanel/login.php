@@ -26,10 +26,10 @@ require "../koneksi.php";
     </style>
 </head>
 
-<body>
+<body class="bg-dark">
     <div class="main d-flex flex-column justify-content-center align-items-center">
-        <div class="login-box p-5 shadow">
-            <h3 class="text-center">Login</h3>
+        <div class="login-box p-5 shadow bg-light">
+            <h3 class="text-center">Login Admin</h3>
             <form action="" method="post">
                 <div>
                     <label for="username">Username</label>
@@ -40,7 +40,7 @@ require "../koneksi.php";
                     <input type="password" class="form-control" id="password" name="password" placeholder="masukkan password">
                 </div>
                 <div class="my-3">
-                    <button class="btn btn-success form-control" type="submit" name="loginbtn">Login</button>
+                    <button class="btn btn-success form-control" type="submit" name="loginbtn">Masuk</button>
                 </div>
             </form>
         </div>

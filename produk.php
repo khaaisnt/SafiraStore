@@ -10,6 +10,9 @@
 </head>
 
 <body>
+    <?php
+    require "navbar.php";
+    ?>
 
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
