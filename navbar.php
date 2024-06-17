@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
+<nav class="navbar navbar-expand-lg p-2">
     <div class="container">
         <a class="navbar-brand" href="index.php">
             <img src="image/logo-safira-new.png" alt="Logo Safira" width="90">

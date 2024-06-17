@@ -1,0 +1,58 @@
+.color1 {
+  background-color: #6b3f6e;
+}
+
+.color1:hover {
+  background-color: #543157;
+}
+
+.color2 {
+  background-color: #f2eeeb;
+}
+
+.color3 {
+  background-color: #cda370;
+}
+
+.no-decoration {
+  text-decoration: none;
+  color: white;
+}
+
+.no-decoration:hover {
+  color: #6b3f6e;
+}
+
+.banner {
+  height: 80vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../image/banner.png");
+  background-size: cover;
+  background-position: center 20%;
+}
+
+.highlighted-kategori {
+  height: 260px;
+  border-radius: 10px;
+}
+
+.kategori-dress {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../image/dress-highlight.jpg");
+  background-size: cover;
+  background-position: center 15%;
+}
+
+.kategori-bag {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../image/bag-highlight.jpg");
+  background-size: cover;
+  background-position: center 15%;
+}
+
+.kategori-mukenah {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../image/mukenah-highlight.jpg");
+  background-size: cover;
+  background-position: center 15%;
+}
