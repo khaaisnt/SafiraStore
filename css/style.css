@@ -23,6 +23,17 @@
   color: #6b3f6e;
 }
 
+.image-box {
+  height: 250px;
+}
+
+.image-box img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
 .banner {
   height: 80vh;
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
@@ -45,14 +56,14 @@
 
 .kategori-bag {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("../image/bag-highlight.jpg");
+    url("../image/tas.jpg");
   background-size: cover;
   background-position: center 15%;
 }
 
 .kategori-mukenah {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("../image/mukenah-highlight.jpg");
+    url("../image/mukenah.jpg");
   background-size: cover;
   background-position: center 15%;
 }

@@ -27,9 +27,9 @@ $queryProduk = mysqli_query($conn, "SELECT id, nama, harga, foto, detail FROM pr
             <h4>Mau Belanja Apa?</h4>
             <div class="col-md-8 offset-md-2">
                 <form action="produk.php" method="get" class="">
-                    <div class="input-group input-group-lg my-4">
+                    <div class="input-group input-group-lg-lg my-4">
                         <input type="text" class="form-control" placeholder="Cari Yuk!" aria-label="" aria-describedby="basic-addon2" name="keyword">
-                        <button type="submit" class="btn color1 text-white">Cari</button>
+                        <button type="submit" class="btn color1 text-white"><i class="bi bi-search"></i></button>
                     </div>
                 </form>
             </div>
@@ -37,10 +37,9 @@ $queryProduk = mysqli_query($conn, "SELECT id, nama, harga, foto, detail FROM pr
     </div>
 
     <!-- kategori -->
-    <div class="container-fluid py-5">
-        <div class="container text-center">
-            <h3>Kategori Terlaris</h3>
-
+    <div class="container-fluid py-5" id="kategori">
+        <div class="container text-center ">
+            <h3 class="fs-1">Kategori Terlaris</h3>
             <div class="row mt-5">
                 <div class="col-md-4 mb-3 ">
                     <div class="highlighted-kategori kategori-dress d-flex justify-content-center align-items-center">
@@ -64,32 +63,58 @@ $queryProduk = mysqli_query($conn, "SELECT id, nama, harga, foto, detail FROM pr
     <!-- about -->
     <div class="container-fluid color2 py-5">
         <div class="container text-center">
-            <h3 class="text-color1">Tentang Kami</h3>
-            <p class="mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi aliquam quod, perferendis a fuga ratione modi. Fugiat quod sit eius libero, quam aliquam consectetur! Enim excepturi fugiat ipsum consectetur tempore!</p>
+            <h3 class="text-color1 fs-1">Tentang Kami</h3>
+            <p class="mt-3">Selamat datang di website resmi Safira Hijab Collection Malang! Kami sangat senang anda mengunjungi website resmi kami. Jika ingin melihat koleksi kamu Anda bisa datang atau menghubungi kami.</p>
+            <ul class="list-group list-group-flush mt-3 lead">
+                <li class="list-group-item color2">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <span class="fw-bold">Location: </span><br>The 8 Residence Kav. 8 Tasikmadu
+                </li>
+                <li class="list-group-item color2">
+                    <i class="bi bi-telephone-fill"></i>
+                    <span class="fw-bold">Phone: </span><br />085234078910
+                </li>
+                <li class="list-group-item color2">
+                    <i class="bi bi-instagram"></i>
+                    <span class="fw-bold">Instagram: </span><br />@Safira0410
+                </li>
+            </ul>
         </div>
     </div>
 
     <!-- produk -->
-    <div class="container-fluid py-5">
+    <div class="container-fluid py-5" id="produk">
         <div class="container text-center">
-            <h3>Produk Kami</h3>
-
+            <h3 class="fs-1">Produk</h3>
             <div class="row mt-5">
-                <div class="col-sm-6 col-md-4 mb-4">
-                    <div class="card">
-                        <img src="image/dress-highlight.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h4 class="card-title">Card title</h4>
-                            <p class="card-text text-truncate">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <p class="card-text fw-bold">Rp.120000</p>
-                            <a href="#" class="btn text-white color1">Lihat Produk</a>
+                <?php while ($data = mysqli_fetch_array($queryProduk)) { ?>
+                    <div class="col-sm-6 col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="image-box">
+                                <img src=" image/<?php echo $data['foto']; ?>" class="card-img-top" alt="fotoProduk">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title"><?php echo $data['nama']; ?></h4>
+                                <p class="card-text text-truncate"> <?php echo $data['detail']; ?> </p>
+                                <p class="card-text fw-bold">Rp. <?php echo $data['harga'] ?></p>
+                                <a href="produk-detail.php?nama=<?php echo $data['nama']; ?>" class="btn text-white color1">Lihat Detail</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                <?php } ?>
             </div>
+            <a class="btn btn-outline-dark mt-2" href="produk.php">See More</a>
         </div>
     </div>
+
+    <!-- footer -->
+    <div class="container-fluid py-3 bg-dark text-light">
+        <div class="container d-flex justify-content-between">
+            <label>&copy; Safira0410</label>
+            <label>Created by Rakha Adrian</label>
+        </div>
+    </div>
+
     </div>
 
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>

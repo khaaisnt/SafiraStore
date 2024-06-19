@@ -9,7 +9,7 @@ require "../koneksi.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login Admin</title>
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
 
     <style>
@@ -29,7 +29,7 @@ require "../koneksi.php";
 <body class="bg-dark">
     <div class="main d-flex flex-column justify-content-center align-items-center">
         <div class="login-box p-5 shadow bg-light">
-            <h3 class="text-center">Login Admin</h3>
+            <h3 class="text-center">Login</h3>
             <form action="" method="post">
                 <div>
                     <label for="username">Username</label>
