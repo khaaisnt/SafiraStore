@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg p-2">
-    <div class="container">
+<nav class="navbar navbar-expand-lg p-2" style="border-bottom: 1px solid #d3d3d3;">
+    <div class=" container">
         <a class="navbar-brand" href="index.php">
             <img src="image/logo-safira-new.png" alt="Logo Safira" width="90">
         </a>
@@ -12,10 +12,10 @@
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
                 <li class="nav-item me-4">
-                    <a class="nav-link" href="#kategori">Kategori</a>
+                    <a class="nav-link" href="produk.php">Kategori</a>
                 </li>
                 <li class="nav-item me-4">
-                    <a class="nav-link" href="#produk">Produk</a>
+                    <a class="nav-link" href="produk.php">Produk</a>
                 </li>
             </ul>
         </div>

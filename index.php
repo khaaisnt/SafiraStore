@@ -28,7 +28,7 @@ $queryProduk = mysqli_query($conn, "SELECT id, nama, harga, foto, detail FROM pr
             <div class="col-md-8 offset-md-2">
                 <form action="produk.php" method="get" class="">
                     <div class="input-group input-group-lg-lg my-4">
-                        <input type="text" class="form-control" placeholder="Cari Yuk!" aria-label="" aria-describedby="basic-addon2" name="keyword">
+                        <input type="text" class="form-control" placeholder="Cari Yuk!" aria-label="" aria-describedby="basic-addon2" name="keyword" autocomplete="off">
                         <button type="submit" class="btn color1 text-white"><i class="bi bi-search"></i></button>
                     </div>
                 </form>
@@ -103,17 +103,14 @@ $queryProduk = mysqli_query($conn, "SELECT id, nama, harga, foto, detail FROM pr
                     </div>
                 <?php } ?>
             </div>
-            <a class="btn btn-outline-dark mt-2" href="produk.php">See More</a>
+            <a class="btn btn-outline-dark mt-2" href="produk.php">Lihat Lainnya</a>
         </div>
     </div>
 
     <!-- footer -->
-    <div class="container-fluid py-3 bg-dark text-light">
-        <div class="container d-flex justify-content-between">
-            <label>&copy; Safira0410</label>
-            <label>Created by Rakha Adrian</label>
-        </div>
-    </div>
+    <?php
+    require "footer.php";
+    ?>
 
     </div>
 
