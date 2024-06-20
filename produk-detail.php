@@ -39,7 +39,8 @@ $queryProdukTerkait = mysqli_query($conn, "SELECT * FROM produk WHERE kategori_i
                 </div>
                 <div class="col-lg-6 offset-lg-1">
                     <h1 class="my-4"><?php echo $produk['nama']; ?></h1>
-                    <p class="fs-5">
+                    <p class="fs-5">Detail:</p>
+                    <p>
                         <?php echo $produk['detail']; ?>
                     </p>
                     <p class="fs-5">
